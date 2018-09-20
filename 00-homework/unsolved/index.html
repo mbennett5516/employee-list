@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,19 +15,20 @@
     <nav>
       <ul>
         <li><img/></li>
-        <li><a>VIEW</a></li>
-        <li><a>ADD</a></li>
-        <li><a>VERIFY</a></li>
-        <li><a>UPDATE</a></li>
-        <li><a>DELETE</a></li>
+        <li class="navbar"><a>VIEW</a></li>
+        <li class="navbar"><a id="add-link">ADD</a></li>
+        <li class="navbar"><a></a></li>
+        <li class="navbar"><a>UPDATE</a></li>
+        <li class="navbar"><a>DELETE</a></li>
       </ul>
     </nav>
+    <div class="column"></div>
     <div class="content">
-      <div class="addBar">
+      <div id="addBar" class = "hide" >
         <form action="" method="POST">
-          <input type="text" id="name" name="name"/>
-          <input type="text" id="empid" name="empid"/>
-          <input type="text" id="phone" name="phone"/>
+          <input type="text" id="name" name="name" placeholder="Name"/>
+          <input type="text" id="empid" name="empid" placeholder="Office Number"/>
+          <input type="text" id="phone" name="phone" placeholder="Phone Number"/>
           <input type="submit" id="submit">
         </form>
       </div>

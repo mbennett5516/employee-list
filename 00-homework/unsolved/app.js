@@ -1,4 +1,4 @@
-for(let i=0;i<5;i++){
+for(let i=0;i<employeeList.length;i++){
     let employee = '<div class="empInfo"><p class="name">';
     employee += employeeList[i].name;
     employee +='</p><p>';
@@ -8,3 +8,9 @@ for(let i=0;i<5;i++){
     employee += '</p></div>';
     $(".info").append(employee);
 }
+// console.log(nodeList);
+
+
+$('#add-link').on('click', function(){
+    $('#addBar').toggleClass('hide');
+})

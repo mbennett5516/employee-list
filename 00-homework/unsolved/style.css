@@ -3,35 +3,36 @@ main{
     height: 900px;
 }
 nav{
-    width:15%;
+    width:20%;
     background-color: #2d2d2d;
     color: white;
     text-align: center;
     float: left;
     height: 100%;
-    /*position: fixed;*/
+    position: fixed;
 }
 
 ul{
     list-style: none;
-    padding: 20px 0px 0px 0px;
-    line-height: 1.8em;
-    font-family: Arial, Helvetica, sans-serif;
+    padding: 150px 0px 0px 0px;
+    line-height: 3em;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 26px;
 }
 
 .content{
-    width:84%;
+    width:79%;
     float: left;
 }
 
-.addBar{
+#addBar{
     text-align: center;
     margin: 0 auto; 
     width: 100%;
     /* display: none; */
 }
 
-.addBar input[type="text"]{
+#addBar input[type="text"]{
     width: 25%;
 }
 
@@ -40,4 +41,24 @@ ul{
     padding: 10px;
     border: 1px solid black;
     width: 49%;
+}
+
+.column{
+    width:20%;
+    background-color: white;
+    color: white;
+    text-align: center;
+    float: left;
+    height: 100%;
+    /* position: fixed; */
+}
+
+.hide{
+    display:none;
+}
+
+.navbar{
+    padding: 5px;
+    border: 1px solid white;
+    
 }
