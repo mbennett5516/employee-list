@@ -15,11 +15,11 @@
     <nav>
       <ul>
         <li><img/></li>
-        <li class="navbar"><a>VIEW</a></li>
-        <li class="navbar"><a id="add-link">ADD</a></li>
-        <li class="navbar"><a></a></li>
-        <li class="navbar"><a>UPDATE</a></li>
-        <li class="navbar"><a>DELETE</a></li>
+        <li ><a class = "navbar" id="view-link">VIEW</a></li>
+        <li ><a class = "navbar" id="add-link">ADD</a></li>
+        <li ><a class = "navbar" id="verify-link">VERIFY</a></li>
+        <li ><a class = "navbar" id="update-link">UPDATE</a></li>
+        <li ><a class = "navbar" id="delete-link">DELETE</a></li>
       </ul>
     </nav>
     <div class="column"></div>
@@ -27,12 +27,18 @@
       <div id="addBar" class = "hide" >
         <form action="" method="POST">
           <input type="text" id="name" name="name" placeholder="Name"/>
-          <input type="text" id="empid" name="empid" placeholder="Office Number"/>
+          <input type="text" id="officeNum" name="officeNum" placeholder="Office Number"/>
           <input type="text" id="phone" name="phone" placeholder="Phone Number"/>
           <input type="submit" id="submit">
         </form>
       </div>
-      <div class="info"></div>
+      <div id="searchBar" class="hide">
+        <form action="" method="POST">
+          <input type="search" id="searchName" name="search" placeholder="Search for an employee by name here.">
+          <button id="searchButton">Search</button>
+        </form>
+      </div>
+      <div id="info"></div>
     </div>
   </main>
   <script src="dom.js"></script>
