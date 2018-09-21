@@ -32,15 +32,30 @@ $('#add-link').on('click', function(){
 
 $('#submit').on('click', function(stopRefresh){
     stopRefresh.preventDefault();
-    let employee = '<div class="empInfo"><p class="name">';
-    employee += document.getElementById('name').value;
-    employee += '</p><p class="officeNum">';
-    employee += document.getElementById('officeNum').value;
-    employee += '</p><p class="phone">';
-    employee += document.getElementById('phone').value;
-    employee += '</p></div>'
-    $("#info").prepend(employee);
-    console.log(employee);
+    // let employee = '<div class="empInfo"><p class="name">';
+    // employee += document.getElementById('name').value;
+    // employee += '</p><p class="officeNum">';
+    // employee += document.getElementById('officeNum').value;
+    // employee += '</p><p class="phone">';
+    // employee += document.getElementById('phone').value;
+    // employee += '</p></div>'
+    let employee = {
+        name: document.getElementById('name').value,
+        officeNum: document.getElementById('officeNum').value,
+        phoneNum: document.getElementById('phone').value
+    };
+    employeeList.unshift(employee);
+    $('#info').empty();
+    for(let i=0;i<employeeList.length;i++){
+        let employee = '<div class="empInfo"><p class="name">';
+        employee += employeeList[i].name;
+        employee +='</p><p>';
+        employee += employeeList[i].officeNum;
+        employee +='</p><p>';
+        employee += employeeList[i].phoneNum;
+        employee += '</p></div>';
+        $("#info").append(employee);
+    }   console.log(employeeList);
 })
 
 $('#verify-link').on('click', function(){
