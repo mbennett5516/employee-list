@@ -1,32 +1,32 @@
-$('#view-link').on('click', function(){
-    $('#info').empty();
-    for(let i=0;i<employeeList.length;i++){
-        let employee = '<div class="empInfo"><p class="name">';
+// Refresh function runs through employeeList array and 
+//returns HTML strings for each including all their information
+const refresh = function () {
+    let employee = '';
+    for (let i = 0; i < employeeList.length; i++) {
+        employee += '<div class="empInfo"><p class="name">';
         employee += employeeList[i].name;
-        employee +='</p><p class="officeNum">';
+        employee += '</p><p class="officeNum">';
         employee += employeeList[i].officeNum;
-        employee +='</p><p class="phone">';
+        employee += '</p><p class="phone">';
         employee += employeeList[i].phoneNum;
         employee += '</p></div>';
-        $("#info").append(employee);
     }
+    return employee;
+}
+
+$('#view-link').on('click', function(){
+    $('#info').empty();
+    window.scrollTo(0,0);
+    $("#info").append(refresh());
     $('#updateBar').addClass('hide');
     $('#searchBar').addClass('hide');
     $('#addBar').addClass('hide');
-})
+});
 
 $('#add-link').on('click', function(){
     $('#info').empty();
-    for(let i=0;i<employeeList.length;i++){
-        let employee = '<div class="empInfo"><p class="name">';
-        employee += employeeList[i].name;
-        employee +='</p><p>';
-        employee += employeeList[i].officeNum;
-        employee +='</p><p>';
-        employee += employeeList[i].phoneNum;
-        employee += '</p></div>';
-        $("#info").append(employee);
-    }
+    window.scrollTo(0,0);
+    $("#info").append(refresh());
     $('#updateBar').addClass('hide');
     $('#searchBar').addClass('hide');
     $('#addBar').removeClass('hide');
@@ -39,23 +39,15 @@ $('#submit').on('click', function(stopRefresh){
         officeNum: parseInt(document.getElementById('officeNum').value),
         phoneNum: document.getElementById('phone').value
     };
-
     employeeList.unshift(employee);
     $('#info').empty();
-    for(let i=0;i<employeeList.length;i++){
-        let employee = '<div class="empInfo"><p class="name">';
-        employee += employeeList[i].name;
-        employee +='</p><p>';
-        employee += employeeList[i].officeNum;
-        employee +='</p><p>';
-        employee += employeeList[i].phoneNum;
-        employee += '</p></div>';
-        $("#info").append(employee);
-    }   console.log(employeeList);
+    $("#info").append(refresh());
+    console.log(employeeList);
 })
 
 $('#verify-link').on('click', function(){
     $('#info').empty();
+    window.scrollTo(0,0);
     $('#updateBar').addClass('hide');
     $('#searchBar').removeClass('hide');
     $('#addBar').addClass('hide');
@@ -86,3 +78,18 @@ $('#update-link').on('click', function(){
     $('#searchBar').addClass('hide');
     $('#addBar').addClass('hide');
 })
+
+$('updateButton').on('click', function(event){
+    event.preventDefault(); 
+    let newName = $('#updateSearch').val();
+    let indx = 0;
+    for(let i=0;i<employeeList.length;i++){
+        if(newName===employeeList[i].name){
+            indx = i;
+        }
+    }
+    $('#updateBar').addClass('hide');
+    $('#replaceBar').toggle('hide');
+    console.log(indx);  
+})
+
