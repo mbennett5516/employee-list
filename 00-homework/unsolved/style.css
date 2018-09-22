@@ -16,6 +16,7 @@ nav{
 ul{
     list-style: none;
     padding: 0px;
+    padding-top: 100px;
     line-height: 3em;
     font-family: 'Fjalla One', sans-serif;
     font-size: 26px;
@@ -26,25 +27,18 @@ ul{
     float: left;
 }
 
-#addBar, #searchBar, #updateBar, #deleteBar, #newBar{
+#addBar, #searchBar, #deleteBar, #newBar{
     text-align: center;
     margin: 0 auto; 
     width: 100%;
     /* display: none; */
 }
 
-#addBar input[type="text"]{
+#addBar input[type="text"], #newBar input[type="text"]{
     width: 25%;
 }
 
-#searchBar input[type="search"]{
-    width: 40%;
-}
-
-#updateBar input[type="search"]{
-    width: 40%;
-}
-
+#searchBar input[type="search"],
 #deleteBar input[type="search"]{
     width: 40%;
 }
@@ -77,4 +71,8 @@ ul{
 .navbar:hover{
     background-color: white;
     color: black;
+}
+
+.far{
+    font-size: 32px;
 }
