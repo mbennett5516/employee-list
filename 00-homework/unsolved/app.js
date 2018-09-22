@@ -38,8 +38,7 @@ $('#add-link').on('click', function(){
     $('#info').empty();
     window.scrollTo(0,0);
     $("#info").append(refresh());
-    $('#updateBar').addClass('hide');
-    $('#searchBar').addClass('hide');
+    hideAll();
     $('#addBar').removeClass('hide');
 })
 
@@ -59,9 +58,8 @@ $('#submit').on('click', function(stopRefresh){
 $('#verify-link').on('click', function(){
     $('#info').empty();
     window.scrollTo(0,0);
-    $('#updateBar').addClass('hide');
+    hideAll();
     $('#searchBar').removeClass('hide');
-    $('#addBar').addClass('hide');
 })
 
 $('#searchButton').on('click', function(stopRefresh){
@@ -81,10 +79,8 @@ $('#searchButton').on('click', function(stopRefresh){
 
 $('#update-link').on('click', function(){
     $('#info').empty();
-    
+    hideAll();
     $('#newBar').removeClass('hide');
-    $('#searchBar').addClass('hide');
-    $('#addBar').addClass('hide');
 })
 
 $('#updateSubmit').on('click', function(event){
