@@ -29,7 +29,7 @@
           <input type="text" id="name" name="name" placeholder="Name"/>
           <input type="text" id="officeNum" name="officeNum" placeholder="Office Number"/>
           <input type="text" id="phone" name="phone" placeholder="Phone Number"/>
-          <input type="submit" id="submit">
+          <input type="submit" id="submit"/>
         </form>
       </div>
       <div id="searchBar" class="hide">
@@ -42,6 +42,20 @@
         <form action="" method="POST">
           <input type="search" id="updateSearch" name="update" placeholder="Search for the name of the employee you'd like to update.">
           <button id="updateButton">Search</button>
+        </form>
+      </div>
+      <div id="newBar" class="hide">
+        <form action="" method="POST">
+          <input type="text" id="newName" name="newName" placeholder="Name"/>
+          <input type="text" id="newOfficeNumber" name="newOfficeNumber" placeholder="Office Number"/>
+          <input type="text" id="newPhone" name="newPhone" placeholder="Phone Number"/>
+          <input type="submit" id="updateSubmit"/>
+        </form>
+      </div>
+      <div id="deleteBar" class="hide">
+        <form action="" method="POST">
+          <input type="search" id="deleteSearch" name="delete" placeholder="Search for the name of the employee you'd like to delete.">
+          <button id="deleteButton">Delete</button>
         </form>
       </div>
       <div id="info"></div>

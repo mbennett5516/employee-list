@@ -1,5 +1,7 @@
 // Refresh function runs through employeeList array and 
-//returns HTML strings for each including all their information
+// returns a single HTML string including each object.key in the array
+// use  as an argument to $(x).append(refresh()) where x is the name
+// of the target class
 const refresh = function () {
     let employee = '';
     for (let i = 0; i < employeeList.length; i++) {
@@ -14,13 +16,22 @@ const refresh = function () {
     return employee;
 }
 
+const hideAll = function(){
+    $('#updateBar').addClass('hide');
+    $('#searchBar').addClass('hide');
+    $('#addBar').addClass('hide');
+    $('#newBar').addClass('hide');
+    $('#deleteBar').addClass('hide');
+}
+
+// When you click "VIEW" on the navbar, #info is cleared of all HTML, the
+// window scrolls to the top, the employeeList array is printed out to #info.
+// All five of the input bars are hidden.
 $('#view-link').on('click', function(){
     $('#info').empty();
     window.scrollTo(0,0);
     $("#info").append(refresh());
-    $('#updateBar').addClass('hide');
-    $('#searchBar').addClass('hide');
-    $('#addBar').addClass('hide');
+    hideAll();
 });
 
 $('#add-link').on('click', function(){
@@ -70,26 +81,41 @@ $('#searchButton').on('click', function(stopRefresh){
 
 $('#update-link').on('click', function(){
     $('#info').empty();
-    const name = document.getElementById('updateSearch').value;
-    for (let i=0;i<employeeList.length;i++){
-
-    }
-    $('#updateBar').removeClass('hide');
+    
+    $('#newBar').removeClass('hide');
     $('#searchBar').addClass('hide');
     $('#addBar').addClass('hide');
 })
 
-$('updateButton').on('click', function(event){
+$('#updateSubmit').on('click', function(event){
     event.preventDefault(); 
-    let newName = $('#updateSearch').val();
-    let indx = 0;
-    for(let i=0;i<employeeList.length;i++){
-        if(newName===employeeList[i].name){
-            indx = i;
-        }
-    }
+    let newName = $('#newName').val();
+    let indx = employeeList.findIndex(e=> e.name == newName);
+    employeeList[indx].officeNum = $('#newOfficeNumber').val();
+    employeeList[indx].phoneNum = $('#newPhone').val();
     $('#updateBar').addClass('hide');
     $('#replaceBar').toggle('hide');
     console.log(indx);  
 })
 
+$('#delete-link').on('click', function(){
+    $('#info').empty();
+    window.scrollTo(0,0);
+    hideAll();
+    $('#deleteBar').removeClass('hide');
+})
+
+$('#deleteButton').on('click', function(event){
+    event.preventDefault();
+    let newName = $('#deleteSearch').val();
+    let indx = employeeList.findIndex(e=> e.name === newName);
+    if(confirm("Are you sure you want to proceed?")){
+        employeeList.splice(indx, 1);
+    }
+    else{
+        $('#deleteSearch').val('');
+        window.scrollTo(0,0);
+        hideAll();
+        $('#deleteBar').removeClass('hide');
+    }
+})
