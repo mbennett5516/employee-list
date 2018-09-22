@@ -27,22 +27,6 @@ ul{
     float: left;
 }
 
-#addBar, #searchBar, #deleteBar, #newBar{
-    text-align: center;
-    margin: 0 auto; 
-    width: 100%;
-    /* display: none; */
-}
-
-#addBar input[type="text"], #newBar input[type="text"]{
-    width: 25%;
-}
-
-#searchBar input[type="search"],
-#deleteBar input[type="search"]{
-    width: 40%;
-}
-
 .empInfo{
     margin: 10px;
     padding: 10px;
@@ -74,5 +58,20 @@ ul{
 }
 
 .far{
-    font-size: 32px;
+    font-size: 46px;
+}
+#addBar, #searchBar, #deleteBar, #newBar{
+    text-align: center;
+    margin: 0 auto; 
+    width: 100%;
+    /* display: none; */
+}
+
+#addBar input[type="text"], #newBar input[type="text"]{
+    width: 25%;
+}
+
+#searchBar input[type="search"],
+#deleteBar input[type="search"]{
+    width: 40%;
 }
