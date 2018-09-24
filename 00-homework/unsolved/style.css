@@ -67,8 +67,9 @@ ul{
     /* display: none; */
 }
 
-#addBar input[type="text"], #newBar input[type="text"]{
-    width: 25%;
+#addBar input[type="text"], #newBar input[type="text"],
+#addBar input[type="tel"], #newBar input[type="tel"]{
+    width: 23%;
 }
 
 #searchBar input[type="search"],
