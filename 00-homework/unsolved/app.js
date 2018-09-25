@@ -2,11 +2,11 @@
 // it many times
 const info = $('#info');
 
-// Refresh function runs through employeeList array and 
+// render function runs through employeeList array and 
 // returns a single HTML string including each object.key in the array
-// use  as an argument to $(x).append(refresh()) where x is the name
+// use  as an argument to $(x).append(render()) where x is the name
 // of the target class
-const refresh = function () {
+const render = function () {
     let employee = '';
     for (let i = 0; i < employeeList.length; i++) {
         employee += '<div class="empInfo"><p class="name">';
@@ -17,7 +17,7 @@ const refresh = function () {
         employee += employeeList[i].phoneNum;
         employee += '</p></div>';
     }
-    return employee;
+    info.append(employee);
 }
 
 // hideAll is a shortcut function I wrote to hide all of the
@@ -33,30 +33,30 @@ const hideAll = function () {
 }
 
 // When you click "VIEW" on the navbar, #info is cleared of all HTML, the
-// window scrolls to the top of the page, the employeeList array is refreshed
+// window scrolls to the top of the page, the employeeList array is rendered
 //  and printed out to #info. All of the input bars are hidden.
 $('#view-link').on('click', function () {
     info.empty();
     window.scrollTo(0, 0);
-    info.append(refresh());
+    render();
     hideAll();
 });
 
 // When you click "ADD" on the navbar, #info is cleared of all HTML, the
-// window scrolls to the top of the page, the employeeList array is refreshed
+// window scrolls to the top of the page, the employeeList array is rendered
 // and printed out to #info. All the input bars are hidden, then addBar is revealed.
 $('#add-link').on('click', function () {
     info.empty();
     window.scrollTo(0, 0);
-    info.append(refresh());
+    render();
     hideAll();
     $('#addBar').removeClass('hide');
 })
 
-// Stops the page from automatically refreshing when submit is pressed,
+// Stops the page from automatically rendering when submit is pressed,
 // builds a new employee object from the information in the inputs on the
 // addBar and pushes it into the first spot in the employeeList array using
-// 'unshift'. Emptys the #info section and refreshes it with the new employee
+// 'unshift'. Emptys the #info section and renderes it with the new employee
 // appearing at the top.
 $('#submit').on('click', function (event) {
     event.preventDefault();
@@ -67,7 +67,7 @@ $('#submit').on('click', function (event) {
     }
         employeeList.unshift(employee);
         info.empty();
-        info.append(refresh());
+        render();
 })
 
 // When the 'VERIFY' button is pressed on the navBar
@@ -80,14 +80,14 @@ $('#verify-link').on('click', function () {
     $('#searchBar').removeClass('hide');
 })
 
-// When the #searchButton is pressed, stop the page from refreshing, store the 
+// When the #searchButton is pressed, stop the page from rendering, store the 
 // string from the input field '#searchName' in the new const variable 'name'.
 // run through the array checking each element for if its .name value === name.
 // If it does, alert a message confirming it does. If not, alert it doesn't.
 $('#searchButton').on('click', function (event) {
     event.preventDefault();
     let isThere = false;
-    const name = $('#searchName').val();
+    let name = $('#searchName').val();
     for (let i = 0; i < employeeList.length; i++) {
         if (name === employeeList[i].name) {
             isThere = true;
@@ -101,46 +101,55 @@ $('#searchButton').on('click', function (event) {
     }
 })
 
-// When 'UPDATE' is clicked on the navBar, empty and refresh the #info section and hide all
+// When 'UPDATE' is clicked on the navBar, empty and render the #info section and hide all
 // of the bars except newBar and scroll to the top of the window;
 $('#update-link').on('click', function () {
     window.scrollTo(0, 0);
     info.empty();
-    info.append(refresh());
+    render();
     hideAll();
     $('#newBar').removeClass('hide');
 })
 
-// When the submit button on the update bar is pressed, stop the page from refreshing
+// When the submit button on the update bar is pressed, stop the page from rendering
 // take the value from the #newname input and search employeeList.name keys for a 
 // value that matches the input. Gets the index of the object that has the same name value
 // and replaces Office Number and Phone Number of that object with what is in #newOfficeNumber
-// and #newPhone input fields, then clears #info and displays a refreshed list.
+// and #newPhone input fields, then clears #info and displays a rendered list.
 $('#updateSubmit').on('click', function (event) {
     event.preventDefault();
     let newName = $('#newName').val();
-    let i = employeeList.findIndex(e => e.name === newName);
-    employeeList[i].officeNum = $('#newOfficeNumber').val();
-    employeeList[i].phoneNum = $('#newPhone').val();
-    info.empty();
-    info.append(refresh());
+    const i = employeeList.findIndex(e => e.name === newName);
+    if (i===-1){
+        alert(`${newName} is not in the list.`);
+        $('#newName').val('');
+        window.scrollTo(0, 0);
+        hideAll();
+        $('#newBar').removeClass('hide');
+    }
+    else{
+        employeeList[i].officeNum = $('#newOfficeNumber').val();
+        employeeList[i].phoneNum = $('#newPhone').val();
+        info.empty();
+        render();
+    }   
 })
 
-// When 'DELETE' is clicked on the navBar, clear and refresh #info, scroll to the top of the 
+// When 'DELETE' is clicked on the navBar, clear and render #info, scroll to the top of the 
 // page, hide all the bars, except the #deleteBar.
 $('#delete-link').on('click', function () {
     info.empty();
-    info.append(refresh());
+    render();
     window.scrollTo(0, 0);
     hideAll();
     $('#deleteBar').removeClass('hide');
 })
 
-// When Submit is pressed on the deleteBar, stop the page from refreshing, set newName =
+// When Submit is pressed on the deleteBar, stop the page from rendering, set newName =
 // the value of the #deleteSearch input. Find the index of the employee object whose name
 // === newName. If they're not in the list, alert the user they're not and reset the delete
 // page. If they are, confirm with the user that they're about to delete all of newName's info.
-// if they confirm, remove them from the employeeList and refresh the #info section. If they cancel,
+// if they confirm, remove them from the employeeList and render the #info section. If they cancel,
 // reset the delete page.
 $('#deleteButton').on('click', function (event) {
     event.preventDefault();
@@ -156,7 +165,7 @@ $('#deleteButton').on('click', function (event) {
     else if (confirm(`Are you sure you want to proceed? All of ${newName}'s info will be permenantly deleted.`)) {
         employeeList.splice(i, 1);
         info.empty();
-        info.append(refresh());
+        render();
     }
     else {
         $('#deleteSearch').val('');
